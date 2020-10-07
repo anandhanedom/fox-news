@@ -6,6 +6,6 @@ export const addBookmark = (bookmarks, articleToBookmark) => {
   if (!existingBookmark) {
     return [...bookmarks, { ...articleToBookmark }];
   } else {
-    console.log('Already bookmarked!');
+    alert('Already bookmarked!');
   }
 };
