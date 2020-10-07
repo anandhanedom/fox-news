@@ -1,7 +1,7 @@
 import { addBookmark } from './bookmarks.utils';
 
 const INITIAL_STATE = {
-  bookmarks: [],
+  selectedBookmarks: [],
 };
 
 const bookmarksReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ const bookmarksReducer = (state = INITIAL_STATE, action) => {
     case 'ADD_BOOKMARK':
       return {
         ...state,
-        bookmarks: addBookmark(state.bookmarks, action.payload),
+        selectedBookmarks: addBookmark(state.selectedBookmarks, action.payload),
       };
 
     default:

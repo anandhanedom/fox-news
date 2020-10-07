@@ -7,5 +7,6 @@ export const addBookmark = (bookmarks, articleToBookmark) => {
     return [...bookmarks, { ...articleToBookmark }];
   } else {
     alert('Already bookmarked!');
+    return [...bookmarks];
   }
 };
