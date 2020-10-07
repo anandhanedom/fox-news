@@ -1,9 +1,9 @@
 import React from 'react';
 
-import NewsList from '../../components/news-list/news-list';
+import Directory from '../../components/directory/directory';
 
 const HomePage = () => {
-  return <NewsList />;
+  return <Directory />;
 };
 
 export default HomePage;
