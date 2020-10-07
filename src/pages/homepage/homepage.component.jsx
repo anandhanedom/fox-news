@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NewsList from '../components/news-list/news-list';
+import NewsList from '../../components/news-list/news-list';
 
 const HomePage = () => {
   return <NewsList />;

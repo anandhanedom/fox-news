@@ -9,6 +9,8 @@ import { MuiThemeProvider } from '@material-ui/core';
 import './index.css';
 import App from './App';
 
+import store from './redux/store';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -22,9 +24,11 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </MuiThemeProvider>,
   document.getElementById('root')
 );
