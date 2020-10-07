@@ -9,7 +9,7 @@ const bookmarksReducer = (state = INITIAL_STATE, action) => {
     case 'ADD_BOOKMARK':
       return {
         ...state,
-        booksmarks: addBookmark(state.bookmarks, action.payload),
+        bookmarks: addBookmark(state.bookmarks, action.payload),
       };
 
     default:

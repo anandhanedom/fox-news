@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -25,9 +27,18 @@ const Header = () => {
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            Fox News
+            <Link style={{ color: 'white', textDecoration: 'none' }} to="/">
+              Fox News
+            </Link>
           </Typography>
-          <Button color="inherit">Bookmarks</Button>
+          <Button color="inherit">
+            <Link
+              style={{ color: 'white', textDecoration: 'none' }}
+              to="/bookmarks"
+            >
+              Bookmarks
+            </Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

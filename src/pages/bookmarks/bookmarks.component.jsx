@@ -1,9 +1,24 @@
 import React from 'react';
 
-const BookmarkPage = () => (
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+//Selectors
+import { selectBookmarkedArticles } from '../../redux/bookmarks/bookmarks.selectors.js';
+
+//Actions
+
+//Components
+import Directory from '../../components/directory/directory';
+
+const BookmarkPage = ({ articles }) => (
   <div>
-    <h1>bookmark page</h1>
+    <Directory articles={articles} />;
   </div>
 );
 
-export default BookmarkPage;
+const mapStateToProps = createStructuredSelector({
+  articles: selectBookmarkedArticles,
+});
+
+export default connect(mapStateToProps)(BookmarkPage);

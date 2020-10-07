@@ -1,4 +1,10 @@
 import React from 'react';
+
+import { connect } from 'react-redux';
+
+//Actions
+import { addBookmark } from '../../redux/bookmarks/bookmarks.actions.js';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,14 +17,16 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    margin:30,
+    margin: 30,
   },
   media: {
     height: 350,
   },
 });
 
-const NewsCard = ({ article: { author, urlToImage, title, description } }) => {
+const NewsCard = ({ article, addBookmark }) => {
+  const { author, urlToImage, title, description } = article;
+
   const classes = useStyles();
 
   return (
@@ -39,7 +47,11 @@ const NewsCard = ({ article: { author, urlToImage, title, description } }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => addBookmark(article)}
+        >
           Bookmark
         </Button>
         <Button size="small" color="primary">
@@ -50,4 +62,8 @@ const NewsCard = ({ article: { author, urlToImage, title, description } }) => {
   );
 };
 
-export default NewsCard;
+const mapDispatchToProps = (dispatch) => ({
+  addBookmark: (article) => dispatch(addBookmark(article)),
+});
+
+export default connect(null, mapDispatchToProps)(NewsCard);

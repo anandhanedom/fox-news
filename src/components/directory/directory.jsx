@@ -14,9 +14,11 @@ const Directory = ({ articles }) => {
         flexWrap="wrap"
         justifyContent="center"
       >
-        {articles.map((article, index) => (
-          <NewsCard key={index} article={article} />
-        ))}
+        {articles.length > 0
+          ? articles.map((article, index) => (
+              <NewsCard key={index} article={article} />
+            ))
+          : null}
       </Box>
     </div>
   );
