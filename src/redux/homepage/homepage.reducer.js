@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   articles: [],
 };
 
-const directoryReducer = (state = INITIAL_STATE, action) => {
+const homepageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SET_ARTICLES':
       return {
@@ -15,4 +15,4 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default directoryReducer;
+export default homepageReducer;

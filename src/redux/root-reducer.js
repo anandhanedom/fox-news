@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import directoryReducer from '../redux/directory/directory.reducer';
+import homepageReducer from '../redux/homepage/homepage.reducer';
 
 export default combineReducers({
-  directory: directoryReducer,
+  homepage: homepageReducer,
 });
