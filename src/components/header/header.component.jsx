@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ marginBottom: '120px' }}>
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
