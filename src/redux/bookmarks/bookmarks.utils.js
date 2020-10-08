@@ -10,3 +10,7 @@ export const addBookmark = (bookmarks, articleToBookmark) => {
     return [...bookmarks];
   }
 };
+
+export const removeBookmark = (bookmarks, articleToRemove) => {
+  return bookmarks.filter((article) => article.title !== articleToRemove.title);
+};

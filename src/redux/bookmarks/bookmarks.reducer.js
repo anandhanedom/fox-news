@@ -1,4 +1,5 @@
 import { addBookmark } from './bookmarks.utils';
+import { removeBookmark } from './bookmarks.utils';
 
 const INITIAL_STATE = {
   selectedBookmarks: [],
@@ -10,6 +11,15 @@ const bookmarksReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         selectedBookmarks: addBookmark(state.selectedBookmarks, action.payload),
+      };
+
+    case 'REMOVE_BOOKMARK':
+      return {
+        ...state,
+        selectedBookmarks: removeBookmark(
+          state.selectedBookmarks,
+          action.payload
+        ),
       };
 
     default:
