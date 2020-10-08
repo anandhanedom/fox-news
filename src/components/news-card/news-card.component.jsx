@@ -50,6 +50,10 @@ const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <Button size="small" color="primary">
+          Read More
+        </Button>
+
         {isBookmark ? (
           <Button
             size="small"
@@ -67,10 +71,6 @@ const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
             Remove Bookmark
           </Button>
         )}
-
-        <Button size="small" color="primary">
-          Read More
-        </Button>
       </CardActions>
     </Card>
   );
