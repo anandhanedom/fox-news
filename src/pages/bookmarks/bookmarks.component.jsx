@@ -13,7 +13,7 @@ import Directory from '../../components/directory/directory';
 
 const BookmarkPage = ({ articles }) => (
   <div>
-    <Directory articles={articles} />;
+    <Directory articles={articles} isBookmark={false} />;
   </div>
 );
 

@@ -40,7 +40,7 @@ class HomePage extends React.Component {
 
   render() {
     const { articles } = this.props;
-    return <Directory articles={articles} />;
+    return <Directory articles={articles} isBookmark={true} />;
   }
 }
 

@@ -1,5 +1,4 @@
-import { addBookmark } from './bookmarks.utils';
-import { removeBookmark } from './bookmarks.utils';
+import { addBookmark, removeBookmark } from './bookmarks.utils';
 
 const INITIAL_STATE = {
   selectedBookmarks: [],
