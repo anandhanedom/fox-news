@@ -6,6 +6,11 @@ export const addBookmark = (bookmarks, articleToBookmark) => {
   if (!existingBookmark) {
     return [...bookmarks, { ...articleToBookmark }];
   } else {
-    console.log('Already bookmarked!');
+    alert('Already bookmarked!');
+    return [...bookmarks];
   }
+};
+
+export const removeBookmark = (bookmarks, articleToRemove) => {
+  return bookmarks.filter((article) => article.title !== articleToRemove.title);
 };

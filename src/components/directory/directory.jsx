@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 //Individual cards
 import NewsCard from '../news-card/news-card.component';
 
-const Directory = ({ articles }) => {
+const Directory = ({ articles, isBookmark }) => {
   return (
     <div>
       <Box
@@ -16,7 +16,7 @@ const Directory = ({ articles }) => {
       >
         {articles.length > 0
           ? articles.map((article, index) => (
-              <NewsCard key={index} article={article} />
+              <NewsCard key={index} article={article} isBookmark={isBookmark} />
             ))
           : null}
       </Box>

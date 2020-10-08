@@ -3,6 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+//Higher order components
+// import WithSpinner from '../../components/with-spinner/with-spinner.component';
+
 //Selectors
 import { selectHomepageArticles } from '../../redux/homepage/homepage.selectors';
 
@@ -13,6 +16,10 @@ import { setArticles } from '../../redux/homepage/homepage.actions.js';
 import Directory from '../../components/directory/directory';
 
 class HomePage extends React.Component {
+  state = {
+    loading: true,
+  };
+
   componentDidMount() {
     const { setArticles } = this.props;
 
@@ -27,11 +34,13 @@ class HomePage extends React.Component {
     fetch(req)
       .then((res) => res.json())
       .then((news) => setArticles(news.articles));
+
+    this.setState({ loading: false });
   }
 
   render() {
     const { articles } = this.props;
-    return <Directory articles={articles} />;
+    return <Directory articles={articles} isBookmark={true} />;
   }
 }
 

@@ -3,7 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 //Actions
-import { addBookmark } from '../../redux/bookmarks/bookmarks.actions.js';
+import {
+  addBookmark,
+  removeBookmark,
+} from '../../redux/bookmarks/bookmarks.actions.js';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -24,8 +27,8 @@ const useStyles = makeStyles({
   },
 });
 
-const NewsCard = ({ article, addBookmark }) => {
-  const { author, urlToImage, title, description } = article;
+const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
+  const { urlToImage, title, description } = article;
 
   const classes = useStyles();
 
@@ -47,16 +50,27 @@ const NewsCard = ({ article, addBookmark }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => addBookmark(article)}
-        >
-          Bookmark
-        </Button>
         <Button size="small" color="primary">
-          Learn More
+          Read More
         </Button>
+
+        {isBookmark ? (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => addBookmark(article)}
+          >
+            Bookmark
+          </Button>
+        ) : (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => removeBookmark(article)}
+          >
+            Remove Bookmark
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
@@ -64,6 +78,7 @@ const NewsCard = ({ article, addBookmark }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addBookmark: (article) => dispatch(addBookmark(article)),
+  removeBookmark: (article) => dispatch(removeBookmark(article)),
 });
 
 export default connect(null, mapDispatchToProps)(NewsCard);

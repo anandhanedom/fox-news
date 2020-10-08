@@ -4,5 +4,5 @@ const selectBookmarks = (state) => state.bookmarks;
 
 export const selectBookmarkedArticles = createSelector(
   [selectBookmarks],
-  (bookmarks) => bookmarks
+  (bookmarks) => bookmarks.selectedBookmarks
 );
