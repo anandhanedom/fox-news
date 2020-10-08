@@ -11,9 +11,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const classes = useStyles();
-
 const WithSpinner = (WrappedComponent) => {
+  const classes = useStyles();
   const Spinner = ({ isLoading, ...otherProps }) => {
     return isLoading ? (
       <div className={classes.root}>
@@ -25,7 +24,7 @@ const WithSpinner = (WrappedComponent) => {
     );
   };
 
-  return Spinner; 
+  return Spinner;
 };
 
 export default WithSpinner;

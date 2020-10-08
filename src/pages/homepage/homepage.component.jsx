@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 //Higher order components
-import WithSpinner from '../../components/with-spinner/with-spinner.component';
+// import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
 //Selectors
 import { selectHomepageArticles } from '../../redux/homepage/homepage.selectors';
