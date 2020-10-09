@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
-  const { urlToImage, title, description } = article;
+  const { urlToImage, title } = article;
 
   const classes = useStyles();
 
@@ -44,16 +44,9 @@ const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
           <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Read More
-        </Button>
-
         {isBookmark ? (
           <Button
             size="small"
