@@ -2,6 +2,7 @@ import { addBookmark, removeBookmark } from './bookmarks.utils';
 
 const INITIAL_STATE = {
   selectedBookmarks: [],
+  articleToShow: {},
 };
 
 const bookmarksReducer = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,12 @@ const bookmarksReducer = (state = INITIAL_STATE, action) => {
           state.selectedBookmarks,
           action.payload
         ),
+      };
+
+    case 'SHOW_SELECTED_ARTICLE':
+      return {
+        ...state,
+        articleToShow: action.payload,
       };
 
     default:

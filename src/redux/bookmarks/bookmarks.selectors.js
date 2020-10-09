@@ -6,3 +6,8 @@ export const selectBookmarkedArticles = createSelector(
   [selectBookmarks],
   (bookmarks) => bookmarks.selectedBookmarks
 );
+
+export const selectArticle = createSelector(
+  [selectBookmarks],
+  (bookmarks) => bookmarks.articleToShow
+);

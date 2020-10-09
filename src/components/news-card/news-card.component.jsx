@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -6,6 +7,7 @@ import { connect } from 'react-redux';
 import {
   addBookmark,
   removeBookmark,
+  showSelectedArticle,
 } from '../../redux/bookmarks/bookmarks.actions.js';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,25 +29,37 @@ const useStyles = makeStyles({
   },
 });
 
-const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
+const NewsCard = ({
+  article,
+  addBookmark,
+  isBookmark,
+  removeBookmark,
+  showSelectedArticle,
+}) => {
   const { urlToImage, title } = article;
 
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={urlToImage}
-          title="news title"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link
+        style={{ textDecoration: 'none', color: 'inherit' }}
+        to="/article"
+        onClick={() => showSelectedArticle(article)}
+      >
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={urlToImage}
+            title="news title"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
       <CardActions>
         {isBookmark ? (
           <Button
@@ -72,6 +86,7 @@ const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
 const mapDispatchToProps = (dispatch) => ({
   addBookmark: (article) => dispatch(addBookmark(article)),
   removeBookmark: (article) => dispatch(removeBookmark(article)),
+  showSelectedArticle: (article) => dispatch(showSelectedArticle(article)),
 });
 
 export default connect(null, mapDispatchToProps)(NewsCard);
