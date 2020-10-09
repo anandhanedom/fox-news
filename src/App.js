@@ -17,8 +17,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/newsId" component={NewsItemPage} />
-        <Route path="/bookmarks" component={BookmarkPage} />
+        <Route exact path="/:newsId" component={NewsItemPage} />
+        <Route exact path="/bookmarks" component={BookmarkPage} />
       </Switch>
     </div>
   );
