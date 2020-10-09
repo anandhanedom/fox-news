@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -6,6 +7,7 @@ import { connect } from 'react-redux';
 import {
   addBookmark,
   removeBookmark,
+  showSelectedArticle,
 } from '../../redux/bookmarks/bookmarks.actions.js';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,6 +19,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -27,40 +32,45 @@ const useStyles = makeStyles({
   },
 });
 
-const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
-  const { urlToImage, title, description } = article;
+const NewsCard = ({
+  article,
+  addBookmark,
+  isBookmark,
+  removeBookmark,
+  showSelectedArticle,
+}) => {
+  const { urlToImage, title } = article;
 
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={urlToImage}
-          title="news title"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link
+        style={{ textDecoration: 'none', color: 'inherit' }}
+        to="/article"
+        onClick={() => showSelectedArticle(article)}
+      >
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={urlToImage}
+            title="news title"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
       <CardActions>
-        <Button size="small" color="primary">
-          Read More
-        </Button>
-
         {isBookmark ? (
           <Button
             size="small"
             color="primary"
             onClick={() => addBookmark(article)}
           >
-            Bookmark
+            <BookmarkBorderIcon /> Bookmark
           </Button>
         ) : (
           <Button
@@ -68,7 +78,7 @@ const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
             color="primary"
             onClick={() => removeBookmark(article)}
           >
-            Remove Bookmark
+            <DeleteIcon /> Remove
           </Button>
         )}
       </CardActions>
@@ -79,6 +89,7 @@ const NewsCard = ({ article, addBookmark, isBookmark, removeBookmark }) => {
 const mapDispatchToProps = (dispatch) => ({
   addBookmark: (article) => dispatch(addBookmark(article)),
   removeBookmark: (article) => dispatch(removeBookmark(article)),
+  showSelectedArticle: (article) => dispatch(showSelectedArticle(article)),
 });
 
 export default connect(null, mapDispatchToProps)(NewsCard);
