@@ -14,11 +14,13 @@ const Directory = ({ articles, isBookmark }) => {
         flexWrap="wrap"
         justifyContent="center"
       >
-        {articles.length > 0
-          ? articles.map((article, index) => (
-              <NewsCard key={index} article={article} isBookmark={isBookmark} />
-            ))
-          : null}
+        {articles.length > 0 ? (
+          articles.map((article, index) => (
+            <NewsCard key={index} article={article} isBookmark={isBookmark} />
+          ))
+        ) : (
+          <h2>No bookmarks</h2>
+        )}
       </Box>
     </div>
   );
