@@ -19,6 +19,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -67,7 +70,7 @@ const NewsCard = ({
             color="primary"
             onClick={() => addBookmark(article)}
           >
-            Bookmark
+            <BookmarkBorderIcon /> Bookmark
           </Button>
         ) : (
           <Button
@@ -75,7 +78,7 @@ const NewsCard = ({
             color="primary"
             onClick={() => removeBookmark(article)}
           >
-            Remove Bookmark
+            <DeleteIcon /> Remove
           </Button>
         )}
       </CardActions>

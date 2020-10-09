@@ -1,0 +1,13 @@
+.article {
+    background: #fff;
+}
+
+.article__img img{
+height: 50vh;
+width: 100%;
+}
+
+.page-container{
+    max-width: 80%;
+    margin: 0 auto;
+}
