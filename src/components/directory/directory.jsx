@@ -1,27 +1,35 @@
 import React from 'react';
 
-import Box from '@material-ui/core/Box';
-
 //Individual cards
 import NewsCard from '../news-card/news-card.component';
 
+//Material UI
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+  cardsContainer: {
+    padding: '100px',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+  },
+});
+
 const Directory = ({ articles, isBookmark }) => {
+  const classes = useStyles();
   return (
     <div>
-      <Box
-        display="flex"
-        bgcolor="background.paper"
-        flexWrap="wrap"
-        justifyContent="center"
-      >
-        {articles.length > 0 ? (
-          articles.map((article, index) => (
-            <NewsCard key={index} article={article} isBookmark={isBookmark} />
-          ))
-        ) : (
-          <h2>No bookmarks</h2>
-        )}
-      </Box>
+      {articles.length > 0 ? (
+        <Grid container spacing={2} className={classes.cardsContainer}>
+          {articles.map((article, index) => (
+            <Grid item xs={1} sm={3}>
+              <NewsCard key={index} article={article} isBookmark={isBookmark} />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <h2>No bookmarks!</h2>
+      )}
     </div>
   );
 };

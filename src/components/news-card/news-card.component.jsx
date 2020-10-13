@@ -19,8 +19,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles({
   root: {
@@ -39,8 +39,6 @@ const NewsCard = ({
   removeBookmark,
   showSelectedArticle,
 }) => {
-  const { urlToImage, title } = article;
-
   const classes = useStyles();
 
   return (
@@ -52,13 +50,23 @@ const NewsCard = ({
       >
         <CardActionArea>
           <CardMedia
-            className={classes.media}
-            image={urlToImage}
-            title="news title"
+            component="img"
+            alt="Img"
+            height="180"
+            image={`${article.urlToImage}`}
+            title="img"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
+          <CardContent style={{ minHeight: '180px' }}>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h3"
+              style={{ fontFamily: 'Staatliches' }}
+            >
+              {`${article.title}`}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              By {article.author}, {article.publishedAt}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -66,19 +74,35 @@ const NewsCard = ({
       <CardActions>
         {isBookmark ? (
           <Button
+            style={{
+              background: '#000',
+              borderRadius: '25px',
+              padding: '5px 10px',
+              color: '#fff',
+              fontWeight: '700',
+              textTransform: 'unset',
+            }}
             size="small"
             color="primary"
             onClick={() => addBookmark(article)}
           >
-            <BookmarkBorderIcon /> Bookmark
+            <AddIcon fontSize="small" /> &nbsp; Bookmark
           </Button>
         ) : (
           <Button
+            style={{
+              background: '#000',
+              borderRadius: '25px',
+              padding: '5px 10px',
+              color: '#fff',
+              fontWeight: '700',
+              textTransform: 'unset',
+            }}
             size="small"
             color="primary"
             onClick={() => removeBookmark(article)}
           >
-            <DeleteIcon /> Remove
+            <RemoveIcon fontSize="small" /> &nbsp; Remove
           </Button>
         )}
       </CardActions>
