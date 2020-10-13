@@ -28,7 +28,9 @@ const Directory = ({ articles, isBookmark }) => {
           ))}
         </Grid>
       ) : (
-        <h2>No bookmarks!</h2>
+        <h2 style={{ marginTop: '100px', textAlign: 'center' }}>
+          No bookmarks!
+        </h2>
       )}
     </div>
   );
