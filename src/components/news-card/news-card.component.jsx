@@ -26,6 +26,9 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     margin: 30,
+    '&:hover': {
+      color: '#6653ff',
+    },
   },
   media: {
     height: 350,
@@ -66,7 +69,7 @@ const NewsCard = ({
               {`${article.title}`}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              By {article.author}, {article.publishedAt}
+              {article.author}, {article.publishedAt}
             </Typography>
           </CardContent>
         </CardActionArea>
