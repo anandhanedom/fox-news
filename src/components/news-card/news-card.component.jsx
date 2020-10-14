@@ -84,7 +84,7 @@ const NewsCard = ({
         ) ? (
           <Button
             style={{
-              background: '#000',
+              background: '#6653ff',
               borderRadius: '25px',
               padding: '5px 10px',
               color: '#fff',
