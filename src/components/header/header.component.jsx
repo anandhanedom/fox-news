@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root} style={{ marginBottom: '120px' }}>
+    <div className={classes.root}>
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
@@ -31,6 +31,7 @@ const Header = () => {
               style={{
                 color: 'white',
                 textDecoration: 'none',
+                fontWeight: '900',
               }}
               to="/"
             >
@@ -43,6 +44,7 @@ const Header = () => {
                 color: 'white',
                 textDecoration: 'none',
                 textTransform: 'none',
+                fontWeight: '600',
               }}
               to="/bookmarks"
             >

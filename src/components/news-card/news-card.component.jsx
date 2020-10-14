@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 //Actions
 import {
@@ -9,6 +10,9 @@ import {
   removeBookmark,
   showSelectedArticle,
 } from '../../redux/bookmarks/bookmarks.actions.js';
+
+//Selectors
+import { selectBookmarkedArticles } from '../../redux/bookmarks/bookmarks.selectors.js';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -19,13 +23,16 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     margin: 30,
+    '&:hover': {
+      color: '#6653ff',
+    },
   },
   media: {
     height: 350,
@@ -35,12 +42,10 @@ const useStyles = makeStyles({
 const NewsCard = ({
   article,
   addBookmark,
-  isBookmark,
   removeBookmark,
   showSelectedArticle,
+  articles,
 }) => {
-  const { urlToImage, title } = article;
-
   const classes = useStyles();
 
   return (
@@ -52,33 +57,61 @@ const NewsCard = ({
       >
         <CardActionArea>
           <CardMedia
-            className={classes.media}
-            image={urlToImage}
-            title="news title"
+            component="img"
+            alt="Img"
+            height="180"
+            image={`${article.urlToImage}`}
+            title="img"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
+          <CardContent style={{ minHeight: '180px' }}>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h3"
+              style={{ fontFamily: 'Staatliches' }}
+            >
+              {`${article.title}`}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {article.author}, {article.publishedAt}
             </Typography>
           </CardContent>
         </CardActionArea>
       </Link>
       <CardActions>
-        {isBookmark ? (
+        {articles.find(
+          (bookmarkedArticle) => bookmarkedArticle.title === article.title
+        ) ? (
           <Button
-            size="small"
-            color="primary"
-            onClick={() => addBookmark(article)}
-          >
-            <BookmarkBorderIcon /> Bookmark
-          </Button>
-        ) : (
-          <Button
+            style={{
+              background: '#6653ff',
+              borderRadius: '25px',
+              padding: '5px 10px',
+              color: '#fff',
+              fontWeight: '700',
+              textTransform: 'unset',
+            }}
             size="small"
             color="primary"
             onClick={() => removeBookmark(article)}
           >
-            <DeleteIcon /> Remove
+            <RemoveIcon fontSize="small" /> &nbsp; Remove
+          </Button>
+        ) : (
+          <Button
+            style={{
+              background: '#000',
+              borderRadius: '25px',
+              padding: '5px 10px',
+              color: '#fff',
+              fontWeight: '700',
+              textTransform: 'unset',
+            }}
+            size="small"
+            color="primary"
+            onClick={() => addBookmark(article)}
+          >
+            <AddIcon fontSize="small" /> &nbsp; Bookmark
           </Button>
         )}
       </CardActions>
@@ -92,4 +125,8 @@ const mapDispatchToProps = (dispatch) => ({
   showSelectedArticle: (article) => dispatch(showSelectedArticle(article)),
 });
 
-export default connect(null, mapDispatchToProps)(NewsCard);
+const mapStateToProps = createStructuredSelector({
+  articles: selectBookmarkedArticles,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCard);

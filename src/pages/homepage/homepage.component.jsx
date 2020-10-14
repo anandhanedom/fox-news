@@ -16,31 +16,23 @@ import { setArticles } from '../../redux/homepage/homepage.actions.js';
 import Directory from '../../components/directory/directory';
 
 class HomePage extends React.Component {
-  state = {
-    loading: true,
-  };
-
   componentDidMount() {
     const { setArticles } = this.props;
 
     var url =
-      'http://newsapi.org/v2/everything?' +
-      'q=Apple&' +
-      'from=2020-10-06&' +
-      'sortBy=popularity&' +
+      'http://newsapi.org/v2/top-headlines?' +
+      'country=us&' +
       'apiKey=fa03504e961340c8a3bfcdfb580cbc7f';
 
     var req = new Request(url);
     fetch(req)
       .then((res) => res.json())
       .then((news) => setArticles(news.articles));
-
-    this.setState({ loading: false });
   }
 
   render() {
     const { articles } = this.props;
-    return <Directory articles={articles} isBookmark={true} />;
+    return <Directory articles={articles} />;
   }
 }
 
