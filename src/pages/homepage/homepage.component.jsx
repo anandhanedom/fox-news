@@ -16,7 +16,7 @@ import { setArticles } from '../../redux/homepage/homepage.actions.js';
 import Directory from '../../components/directory/directory';
 
 class HomePage extends React.Component {
-  componentDidMount() {
+  fetchFromAPI = () => {
     const { setArticles } = this.props;
 
     var url =
@@ -28,6 +28,10 @@ class HomePage extends React.Component {
     fetch(req)
       .then((res) => res.json())
       .then((news) => setArticles(news.articles));
+  };
+
+  componentDidMount() {
+    this.fetchFromAPI();
   }
 
   render() {
