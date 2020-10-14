@@ -20,7 +20,12 @@ const Directory = ({ articles }) => {
   return (
     <div>
       {articles.length > 0 ? (
-        <Grid container spacing={2} className={classes.cardsContainer}>
+        <Grid
+          container
+          spacing={2}
+          className={classes.cardsContainer}
+          wrap="wrap"
+        >
           {articles.map((article, index) => (
             <Grid item xs={1} sm={3}>
               <NewsCard key={index} article={article} />
