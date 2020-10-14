@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 //Actions
 import {
@@ -9,6 +10,9 @@ import {
   removeBookmark,
   showSelectedArticle,
 } from '../../redux/bookmarks/bookmarks.actions.js';
+
+//Selectors
+import { selectBookmarkedArticles } from '../../redux/bookmarks/bookmarks.selectors.js';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -38,9 +42,9 @@ const useStyles = makeStyles({
 const NewsCard = ({
   article,
   addBookmark,
-  isBookmark,
   removeBookmark,
   showSelectedArticle,
+  articles,
 }) => {
   const classes = useStyles();
 
@@ -75,23 +79,9 @@ const NewsCard = ({
         </CardActionArea>
       </Link>
       <CardActions>
-        {isBookmark ? (
-          <Button
-            style={{
-              background: '#000',
-              borderRadius: '25px',
-              padding: '5px 10px',
-              color: '#fff',
-              fontWeight: '700',
-              textTransform: 'unset',
-            }}
-            size="small"
-            color="primary"
-            onClick={() => addBookmark(article)}
-          >
-            <AddIcon fontSize="small" /> &nbsp; Bookmark
-          </Button>
-        ) : (
+        {articles.find(
+          (bookmarkedArticle) => bookmarkedArticle.title === article.title
+        ) ? (
           <Button
             style={{
               background: '#000',
@@ -107,6 +97,22 @@ const NewsCard = ({
           >
             <RemoveIcon fontSize="small" /> &nbsp; Remove
           </Button>
+        ) : (
+          <Button
+            style={{
+              background: '#000',
+              borderRadius: '25px',
+              padding: '5px 10px',
+              color: '#fff',
+              fontWeight: '700',
+              textTransform: 'unset',
+            }}
+            size="small"
+            color="primary"
+            onClick={() => addBookmark(article)}
+          >
+            <AddIcon fontSize="small" /> &nbsp; Bookmark
+          </Button>
         )}
       </CardActions>
     </Card>
@@ -119,4 +125,8 @@ const mapDispatchToProps = (dispatch) => ({
   showSelectedArticle: (article) => dispatch(showSelectedArticle(article)),
 });
 
-export default connect(null, mapDispatchToProps)(NewsCard);
+const mapStateToProps = createStructuredSelector({
+  articles: selectBookmarkedArticles,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCard);

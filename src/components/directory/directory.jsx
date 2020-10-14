@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Directory = ({ articles, isBookmark }) => {
+const Directory = ({ articles }) => {
   const classes = useStyles();
   return (
     <div>
@@ -23,7 +23,7 @@ const Directory = ({ articles, isBookmark }) => {
         <Grid container spacing={2} className={classes.cardsContainer}>
           {articles.map((article, index) => (
             <Grid item xs={1} sm={3}>
-              <NewsCard key={index} article={article} isBookmark={isBookmark} />
+              <NewsCard key={index} article={article} />
             </Grid>
           ))}
         </Grid>
